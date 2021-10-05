@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+
+<th:block th:fragment="tiles">
+    <!-- top tiles start -->
+    <div class="row tile_count">
+        <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+            <span class="count_top "><i class="fa fa-book"></i>  Course works Pending</span>
+            <div class="count green" th:text="${topTiles.courseworks}"></div>
+        </div>
+        <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+            <span class="count_top "><i class="fa fa-graduation-cap"></i>  Modules Enrolled</span>
+            <div class="count" th:text="${topTiles.modules}"></div>
+        </div>
+    </div>
+    </div>
+    <!-- top tiles end -->
+
+</th:block>
+
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>BlackBoard Giga - Add new Coursework</title>
+
+    <th:block th:replace="parts/styles :: common"></th:block>
+
+</head>
+<body class="nav-md">
+<div class="container body">
+    <div class="main_container">
+
+        <th:block th:replace="parts/sidemenu :: menu"></th:block>
+        <th:block th:replace="parts/topmenu :: menu"></th:block>
+
+        <!-- page content -->
+        <div class="right_col" role="main">
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <h2>Add New Coursework</h2>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="x_content">
+                            <div class="alert alert-success alert-dismissible fade in" role="alert"
+                                 th:if="${successMsg}">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                                        aria-hidden="true">×</span></button>
+                                <span th:text="*{successMsg}"></span>
+                            </div>
+                            <br/>
+                            <form th:action="@{/coursework/save}" method="post" th:object="${coursework}"
+                                  class="form-horizontal form-label-left">
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Coursework Name
+                                        <span class="required">*</span></label>
+                                    <div class="col-md-4 col-sm-4 col-xs-12">
+                                        <input type="text" th:field="*{name}" class="form-control col-md-7 col-xs-12"
+                                               required>
+                                    </div>
+                                    <div class="col-md-3 col-sm-3 col-xs-12 mt-5">
+                                        <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="courseworkFile">Coursework
+                                        File <span class="required">*</span></label>
+                                    <div class="col-md-4 col-sm-4 col-xs-12">
+                                        <textarea rows="10" type="text" th:field="*{courseworkFile}"
+                                                  class="form-control col-md-7 col-xs-12" required></textarea>
+                                    </div>
+                                    <div class="col-md-3 col-sm-3 col-xs-12 mt-5">
+                                        <span th:if="${#fields.hasErrors('courseworkFile')}"
+                                              th:errors="*{courseworkFile}"></span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Due Date & Time<span
+                                            class="required">*</span></label>
+                                    <div class="col-md-2 col-sm-2 col-xs-12">
+
+                                        <input type="text" class="form-control" name="dueDateAndTime"
+                                               id="dueDateAndTime" required>
+                                        <span class="fa fa-calendar form-control-feedback right"
+                                              aria-hidden="true"></span>
+                                    </div>
+                                    <div class="col-md-3 col-sm-3 col-xs-12 mt-5">
+                                        <span id="dobErr"></span>
+                                        <span th:if="${#fields.hasErrors('dueDateAndTime')}"
+                                              th:errors="*{dueDateAndTime}"></span>
+                                    </div>
+                                </div>
+
+                                <div class="ln_solid"></div>
+                                <div class="form-group">
+                                    <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                                        <button class="btn btn-primary" type="reset" id="resetBtn">Reset</button>
+                                        <button type="submit" class="btn btn-success">Save</button>
+                                    </div>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /page content -->
+
+        <th:block th:replace="parts/footer :: footer"></th:block>
+
+    </div>
+</div>
+
+<th:block th:replace="parts/scripts :: common"></th:block>
+<script th:src="@{/custom/js/book/form.js}"></script>
+</body>
+</html>

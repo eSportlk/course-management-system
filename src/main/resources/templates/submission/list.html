@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>BlackBoard Giga - Submission List</title>
+
+    <th:block th:replace="parts/styles :: common"></th:block>
+    <th:block th:replace="parts/styles :: datatable"></th:block>
+
+</head>
+<body class="nav-md">
+<div class="container body">
+    <div class="main_container">
+
+        <th:block th:replace="parts/sidemenu :: menu"></th:block>
+        <th:block th:replace="parts/topmenu :: menu"></th:block>
+
+        <!-- page content -->
+        <div class="right_col" role="main">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>List of Submissions</h2>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+
+                        <table id="datatable"
+                               class="table table-striped table-bordered">
+                            <thead>
+                            <tr>
+                                <th>Submission ID</th>
+                                <th>Student ID</th>
+                                <th>Course Work ID</th>
+                                <th>Course Work Name</th>
+                                <th>Course Work Deadline</th>
+                                <th style="width: 50px;">Created Date</th>
+                                <th style="width: 450px;">Course Work Submission File</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="s : ${submissions}">
+                                <td th:text="${s.id}"></tdstyle>
+                                <td th:text="${s.student.id}"></td>
+                                <td th:text="${s.coursework.id}"></td>
+                                <td th:text="${s.coursework.courseworkName}"></td>
+                                <td th:text="${s.coursework.dueDateAndTime}"></td>
+                                <td style="white-space: pre-wrap" th:text="${s.creationDate}"></td>
+                                <td th:text="${s.courseworkFile}"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /page content -->
+
+        <th:block th:replace="parts/footer :: footer"></th:block>
+
+    </div>
+</div>
+
+<th:block th:replace="parts/scripts :: common"></th:block>
+<th:block th:replace="parts/scripts :: datatable"></th:block>
+<script th:src="@{/custom/js/book/list.js}"></script>
+</body>
+</html>
