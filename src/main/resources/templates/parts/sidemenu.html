@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+
+<th:block th:fragment="menu">
+    <div class="col-md-3 left_col">
+        <div class="left_col scroll-view">
+            <div class="navbar nav_title" style="border: 0;">
+                <a href="/" class="site_title"><i class="fa fa-pencil"></i>
+                    <span>BlackBoard Giga</span></a>
+            </div>
+
+            <div class="clearfix"></div>
+
+            <br/>
+
+            <!-- sidebar menu -->
+            <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                <div class="menu_section">
+                    <ul class="nav side-menu">
+                        <li><a href="/"><i class="fa fa-home"></i>Dashboard</a></li>
+
+                        <li th:if="${isAdmin}"><a><i class="fa fa-user"></i> Members <span
+                                class="fa fa-chevron-down"></span></a>
+                            <ul class="nav child_menu">
+                                <li><a href="/member/add">Add New</a></li>
+                                <li><a href="/member/list">List</a></li>
+                            </ul>
+                        </li>
+
+                        <li><a><i class="fa fa-book"></i> Course Works <span
+                                class="fa fa-chevron-down"></span></a>
+                            <ul class="nav child_menu">
+                                <li th:if="${isLecturer || isAdmin}"><a href="/coursework/add">Add New</a></li>
+                                <li><a href="/coursework/view">List</a></li>
+                                <li th:if="${isLecturer || isAdmin}" ><a href="/submission/list">Submission List</a></li>
+<!--                                <li><a href="/coursework/submit">Submit Coursework</a></li>-->
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+            <!-- /sidebar menu -->
+        </div>
+    </div>
+</th:block>
+
+</html>

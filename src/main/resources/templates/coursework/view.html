@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>BlackBoard Giga - Coursework List</title>
+
+    <th:block th:replace="parts/styles :: common"></th:block>
+    <th:block th:replace="parts/styles :: datatable"></th:block>
+
+</head>
+<body class="nav-md">
+<div class="container body">
+    <div class="main_container">
+
+        <th:block th:replace="parts/sidemenu :: menu"></th:block>
+        <th:block th:replace="parts/topmenu :: menu"></th:block>
+
+        <!-- page content -->
+        <div class="right_col" role="main">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>List of Coursework</h2>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <div class="alert alert-success alert-dismissible fade in" role="alert"
+                             th:if="${successMsg}">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                                    aria-hidden="true">×</span></button>
+                            <span th:text="*{successMsg}"></span>
+                        </div>
+                        <table id="datatable"
+                               class="table table-striped table-bordered">
+                            <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th style="width: 450px;">Description</th>
+                                <th style="width: 50px;">Added</th>
+                                <th style="width: 50px;">Due</th>
+                                <th style="width: 50px;">Action</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="c : ${coursework}">
+                                <td th:text="${c.id}"></tdstyle>
+                                <td th:text="${c.courseworkName}"></td>
+                                <td style="white-space: pre-wrap" th:text="${c.courseworkFile}"></td>
+                                <td th:text="${c.creationDate}"></td>
+                                <td th:text="${c.dueDateAndTime}"></td>
+                                <td>
+                                    <a type="submit" class="btn btn-success"
+                                       th:href="@{'/coursework/submit?id=' + ${c.id}}">Submit</a>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /page content -->
+
+        <th:block th:replace="parts/footer :: footer"></th:block>
+
+    </div>
+</div>
+
+<th:block th:replace="parts/scripts :: common"></th:block>
+<th:block th:replace="parts/scripts :: datatable"></th:block>
+<script th:src="@{/custom/js/book/list.js}"></script>
+</body>
+</html>
